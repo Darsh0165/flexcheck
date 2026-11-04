@@ -15,3 +15,9 @@ Main App/data.db
 
 # Logs
 *.log
+
+.streamlit/secrets.toml
+.env
+*.db
+venv/
+__pycache__/

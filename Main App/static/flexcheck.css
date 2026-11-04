@@ -1,0 +1,310 @@
+:root {
+  --bg-primary: #0b1120;
+  --bg-surface: #111a2b;
+  --bg-surface-hover: #162238;
+  --bg-topbar: rgba(15, 23, 42, 0.85);
+
+  --border-color: #1f2a3d;
+  --border-hover: #2e3e59;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-sub: #cbd5e1;
+
+  --accent-cyan: #5eead4;
+  --accent-cyan-glow: rgba(94, 234, 212, 0.15);
+  --accent-orange: #fb923c;
+  --accent-orange-glow: rgba(251, 146, 60, 0.2);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 16px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   Page layout (overrides the 750px limit in style.css)
+   ========================================================================== */
+.block-container {
+  max-width: 1200px !important;
+  padding: 4.5rem clamp(1rem, 4vw, 3rem) 3rem !important;
+}
+
+[data-testid="stHeader"] {
+  background: transparent !important;
+}
+
+.stAppDeployButton {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Icon fix: style.css forces AdobeClean on everything, which turns icons
+   into text like "expand_more". This restores the icon font.
+   ========================================================================== */
+[data-testid="stIconMaterial"],
+.block-container [data-testid="stIconMaterial"],
+.block-container span[class*="material"] {
+  font-family: "Material Symbols Rounded" !important;
+}
+
+/* ==========================================================================
+   Topbar Navigation
+   ========================================================================== */
+.st-key-topbar {
+  background: var(--bg-topbar);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  margin-bottom: 24px;
+  position: sticky;
+  top: 4rem;
+  z-index: 50;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  transition: var(--transition);
+}
+
+/* One single row that never wraps (also on phones) */
+.st-key-topbar [data-testid="stHorizontalBlock"] {
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.st-key-topbar [data-testid="stHorizontalBlock"]::-webkit-scrollbar {
+  display: none;
+}
+
+.st-key-topbar [data-testid="stColumn"],
+.st-key-topbar [data-testid="column"] {
+  width: auto !important;
+  min-width: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+/* 5th column is the empty spacer that pushes the account button to the right */
+.st-key-topbar [data-testid="stColumn"]:nth-child(5),
+.st-key-topbar [data-testid="column"]:nth-child(5) {
+  flex: 1 1 auto !important;
+}
+
+.st-key-topbar a[data-testid="stPageLink-NavLink"] {
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  width: auto;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--text-sub);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.st-key-topbar a[data-testid="stPageLink-NavLink"]:hover {
+  color: var(--accent-cyan);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.st-key-topbar a[data-testid="stPageLink-NavLink"] p {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  font-size: 0.95rem;
+}
+
+.st-key-topbar [data-testid="stPopover"] button {
+  white-space: nowrap;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.fc-hero {
+  border-radius: var(--radius-lg);
+  padding: clamp(48px, 8vw, 84px) clamp(16px, 4vw, 40px);
+  text-align: center;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  background: radial-gradient(circle at 50% 0%, rgba(94, 234, 212, 0.08) 0%, var(--bg-surface) 75%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  min-height: clamp(300px, 46vh, 500px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-kicker {
+  letter-spacing: 0.2em;
+  font-size: clamp(0.65rem, 1.6vw, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin: 0 0 14px;
+}
+
+.fc-slogan {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  padding: 0;
+  color: var(--text-main);
+  text-wrap: balance;
+}
+
+.fc-sub {
+  color: var(--text-sub);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   Start Workout button (!important needed: style.css styles all buttons)
+   ========================================================================== */
+div.st-key-hero_start button {
+  min-height: 64px;
+  padding: 0 32px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--radius-md) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.35);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+div.st-key-hero_start button p {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+
+div.st-key-hero_start button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(14, 165, 233, 0.5);
+  filter: brightness(1.08);
+}
+
+div.st-key-hero_start button:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Streak Indicator
+   ========================================================================== */
+.fc-streak {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.fc-streak:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 16px var(--accent-orange-glow);
+}
+
+.fc-streak-num {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--accent-orange);
+  line-height: 1;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.fc-streak-label {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.fc-streak-note {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Feature / Content Cards (grid = equal heights, wraps on small screens)
+   ========================================================================== */
+.fc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 8px 0 28px;
+}
+
+.fc-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fc-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+.fc-card-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.fc-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: var(--text-main);
+}
+
+.fc-card-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Phones
+   ========================================================================== */
+@media (max-width: 640px) {
+  .block-container {
+    padding-top: 3.5rem !important;
+  }
+  .st-key-topbar {
+    padding: 6px 10px;
+  }
+  .st-key-topbar a[data-testid="stPageLink-NavLink"] {
+    padding: 0.4rem 0.55rem;
+  }
+  .st-key-topbar a[data-testid="stPageLink-NavLink"] p {
+    font-size: 0.82rem;
+  }
+  div.st-key-hero_start button {
+    min-height: 56px;
+  }
+  div.st-key-hero_start button p {
+    font-size: 1.1rem !important;
+  }
+}
